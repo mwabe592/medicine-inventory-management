@@ -55,10 +55,10 @@ const AddMedication = () => {
         stock: 0,
         pharmaCode: 0,
       });
-    } catch (err: any) {
+    } catch (err: unknown) {
       setSuccessMessage("");
       console.error("Error adding medication:", err);
-      setErrorMessage(err.message);
+      setErrorMessage(err instanceof Error ? err.message : String(err));
     }
   };
 
