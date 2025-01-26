@@ -21,7 +21,7 @@ const UpdateMedicine = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/medication/${formData.id}`,
+        `https://medicine-inventory-management-api.vercel.app/${formData.id}`,
         {
           method: "PUT",
           headers: {

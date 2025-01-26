@@ -18,17 +18,20 @@ const DeleteMedicine = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8000/medication`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          strength: formData.strength,
-        }),
-        credentials: "include", // Include cookies in the request
-      });
+      const response = await fetch(
+        `https://medicine-inventory-management-api.vercel.app/medication`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            strength: formData.strength,
+          }),
+          credentials: "include", // Include cookies in the request
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to delete medicine");

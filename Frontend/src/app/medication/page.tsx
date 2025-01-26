@@ -9,13 +9,16 @@ const page = async () => {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get("accessToken");
 
-  const response = await fetch("http://localhost:8000/medication", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Cookie: `accessToken=${accessToken?.value}`, // Pass the cookie manually
-    },
-  });
+  const response = await fetch(
+    "https://medicine-inventory-management-api.vercel.app/medication",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `accessToken=${accessToken?.value}`, // Pass the cookie manually
+      },
+    }
+  );
 
   console.log("Response status:", response.status);
   if (!response.ok) {

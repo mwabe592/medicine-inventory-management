@@ -25,14 +25,17 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/auth/login", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // Include cookies in the request
-      });
+      const response = await fetch(
+        "https://medicine-inventory-management-api.vercel.app/auth/login",
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // Include cookies in the request
+        }
+      );
 
       if (!response.ok) {
         throw new Error("There was an error logging in");

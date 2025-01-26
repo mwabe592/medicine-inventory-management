@@ -15,7 +15,7 @@ const SearchMedicine = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/medication?name=${medicineName}`, // Replace with your backend endpoint
+        `https://medicine-inventory-management-api.vercel.app/medication?name=${medicineName}`, // Replace with your backend endpoint
         {
           method: "GET",
           headers: {

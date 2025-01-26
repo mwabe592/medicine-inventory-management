@@ -28,14 +28,17 @@ const AddMedication = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/medication", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-        credentials: "include", // Include cookies in the request
-      });
+      const response = await fetch(
+        "https://medicine-inventory-management-api.vercel.app/medication",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+          credentials: "include", // Include cookies in the request
+        }
+      );
 
       if (!response.ok) {
         const errorInfo = await response.json();
