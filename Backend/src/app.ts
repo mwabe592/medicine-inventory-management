@@ -11,7 +11,10 @@ connectDB().catch(console.error);
 
 //cors Congfig
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "https://medicine-inventory-management-six.vercel.app/",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
   credentials: true, // Allow cookies and authorization headers
   allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
