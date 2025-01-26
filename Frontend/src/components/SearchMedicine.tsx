@@ -33,9 +33,9 @@ const SearchMedicine = () => {
       console.log("Medicine found:", data);
       setMedicineDetails(data);
       setError("");
-    } catch (err: any) {
+    } catch (err: unknown) {
       setMedicineDetails([]);
-      setError(err.message);
+      setError(err instanceof Error ? err.message : String(err));
     }
   };
 

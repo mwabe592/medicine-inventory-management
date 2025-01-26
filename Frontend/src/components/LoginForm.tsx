@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 type LoginFormData = {
@@ -7,7 +7,7 @@ type LoginFormData = {
   password: string;
 };
 
-const loginForm = () => {
+const LoginForm = () => {
   const [formData, setFormData] = useState<LoginFormData>({
     userName: "",
     password: "",
@@ -97,4 +97,4 @@ const loginForm = () => {
   );
 };
 
-export default loginForm;
+export default LoginForm;

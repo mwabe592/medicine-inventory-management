@@ -43,6 +43,7 @@ const AddMedication = () => {
       }
 
       const data = await response.json();
+      console.log("Medication added:", data);
       setSuccessMessage("Medication added successfully");
       setFormData({
         name: "",

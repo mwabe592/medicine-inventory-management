@@ -44,9 +44,9 @@ const UpdateMedicine = () => {
       console.log("Medicine updated:", data);
       setSuccessMessage("Medicine updated successfully");
       setErrorMessage("");
-    } catch (err: any) {
+    } catch (err: unknown) {
       setSuccessMessage("");
-      setErrorMessage(err.message);
+      setErrorMessage(err instanceof Error ? err.message : String(err));
     }
   };
 
