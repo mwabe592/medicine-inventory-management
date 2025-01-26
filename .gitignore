@@ -1,0 +1,11 @@
+#ignore environment variables file
+.env
+
+#ignore secret Key generation file 
+generateSecretKey.ts
+
+#ignore dependencies
+node_modules/
+
+#ignore next.js file
+.next/
