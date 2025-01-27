@@ -14,7 +14,3 @@ const handler = async (req: Request, res: Response) => {
 };
 
 export default handler;
-
-///Users/ben/Developer/Medicines Inventory Management 2/.env
-
-///Users/ben/Developer/Medicines Inventory Management 2/package.json

@@ -63,3 +63,9 @@ export const loginUserController = async (
     res.status(500).json({ error: "An unexpected error occurred" });
   }
 };
+
+export const logoutController = async (req: Request, res: Response) => {
+  res.clearCookie("accessToken");
+  res.clearCookie("refreshToken");
+  res.status(200).json({ message: "You have been successfully logged out" });
+};

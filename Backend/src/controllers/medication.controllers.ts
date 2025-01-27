@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
 import * as MedicationService from "../services/medication.service";
+import { IMedication } from "../models/medication.model";
 
 // Handle GET request to fetch all medication
 export const getAllMedications = async (req: Request, res: Response) => {
-  console.log("this route has been hit");
-
   // Extract the search parameters (id or name) from the query string
   const { id, name } = req.query;
 
@@ -60,18 +59,36 @@ export const updateMedication = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { id } = req.params;
+  const { _id, ...updateData } = req.body; // Extract the id and the rest of the update data
+
+  console.log(req.body); // For debugging, you can remove this later
 
   try {
+    // Ensure the ID exists
+    if (!_id) {
+      res.status(400).json({ message: "Medication ID is required" });
+      return;
+    }
+
+    // Call the MedicationService to update the medication
     const updatedMedication = await MedicationService.updateMedication(
-      id,
-      req.body
+      _id,
+      updateData
     );
+
+    // If no medication is found, return a 404 error
     if (!updatedMedication) {
       res.status(404).json({ message: "Medication not found" });
+      return;
     }
-    res.status(200).json(updatedMedication);
+
+    // Return the success response
+    res.status(200).json({
+      message: `${updatedMedication.name} ${updatedMedication.strength} has been updated`,
+      updatedMedication,
+    });
   } catch (error) {
+    // Catch any error and return a 500 response
     res
       .status(500)
       .json({ message: "There was an error updating the medication", error });
@@ -83,18 +100,19 @@ export const deleteMedication = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { name, strength } = req.body;
+  const { _id } = req.body;
 
   try {
-    const deletedMedication = await MedicationService.deleteMedication(
-      name,
-      strength
-    );
+    const deletedMedication = await MedicationService.deleteMedication(_id);
+    console.log(deletedMedication);
     if (!deletedMedication) {
       res.status(404).json({ message: "Medication not found" });
       return;
     }
-    res.status(200).json({ message: "Medication deleted successfully" });
+    res.status(200).json({
+      message: `${deletedMedication.name} ${deletedMedication.strength} ${deletedMedication.dosageForm} has been deleted`,
+      deletedMedication,
+    });
   } catch (error) {
     res.status(500).json({
       message: "There was an error in deleting the medication",

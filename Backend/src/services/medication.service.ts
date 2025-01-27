@@ -47,39 +47,31 @@ export const addMedication = async (medicationData: IMedication) => {
     throw new Error("There was an error adding medication to the database");
   }
 };
+
 export const updateMedication = async (
   id: string,
-  newMedicineInfo: IMedication
+  updateData: Partial<IMedication>
 ) => {
-  const { name } = newMedicineInfo;
-  const capitalisedName = name.charAt(0).toUpperCase() + name.slice(1);
-
-  const updatedMedicineInfo = { ...newMedicineInfo, name: capitalisedName };
   try {
+    // Find and update the medication by ID
     const updatedMedication = await Medication.findByIdAndUpdate(
       id,
-      updatedMedicineInfo,
-      { new: true } // Returns the updated document
+      updateData,
+      {
+        new: true, // Return the updated document
+        runValidators: true, // Ensure validation runs for the update
+      }
     );
-
-    if (!updatedMedication) {
-      throw new Error("Medication not found");
-    }
 
     return updatedMedication;
   } catch (error) {
-    console.error(error);
-    throw new Error("There was an error updating the medication");
+    throw new Error("Error updating medication");
   }
 };
 
-export const deleteMedication = async (name: string, strength: string) => {
+export const deleteMedication = async (_id: string) => {
   try {
-    const deletedMedication = await Medication.findOneAndDelete({
-      //Case-insensitive matches
-      name: new RegExp(`^${name}$`, "i"),
-      strength: new RegExp(`^${strength}$`, "i"),
-    });
+    const deletedMedication = await Medication.findByIdAndDelete({ _id });
     console.log(deletedMedication);
     if (!deletedMedication) {
       throw new Error("Deleting medication not found");

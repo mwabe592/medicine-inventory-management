@@ -6,7 +6,7 @@ const medRouter = Router();
 
 medRouter.get("/", verifyToken, medicationController.getAllMedications);
 medRouter.post("/", verifyToken, medicationController.addMedication);
-medRouter.put("/:id", verifyToken, medicationController.updateMedication);
-medRouter.delete("/", verifyToken, medicationController.deleteMedication);
+medRouter.put("/update", verifyToken, medicationController.updateMedication);
+medRouter.delete("/delete", verifyToken, medicationController.deleteMedication);
 
 export default medRouter;

@@ -10,6 +10,7 @@ export const verifyToken = (
   // Check if the authorization header exists and contains a token
 
   const token = req.cookies.accessToken;
+  console.log(`Access token: ${token}`);
   if (!token) {
     res.status(401).json({ message: "Access token not found in cookies" });
     return;
