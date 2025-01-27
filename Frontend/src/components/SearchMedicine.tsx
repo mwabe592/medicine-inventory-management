@@ -14,8 +14,10 @@ const SearchMedicine = () => {
     e.preventDefault();
 
     try {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
       const response = await fetch(
-        `https://medicine-inventory-management-api.vercel.app/medication?name=${medicineName}`, // Replace with your backend endpoint
+        `${API_URL}/medication?name=${medicineName}`,
+       
         {
           method: "GET",
           headers: {

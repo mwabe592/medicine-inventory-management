@@ -29,7 +29,8 @@ const AddMedication = () => {
 
     try {
       const response = await fetch(
-        "https://medicine-inventory-management-api.vercel.app/medication",
+        // "https://medicine-inventory-management-api.vercel.app/medication",
+        "localhost:3000/api/medication", 
         {
           method: "POST",
           headers: {

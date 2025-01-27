@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type LoginFormData = {
   userName: string;
@@ -25,17 +26,15 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://medicine-inventory-management-api.vercel.app/auth/login",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Include cookies in the request
-        }
-      );
+      const API_URL = process.env.NEXT_PUBLIC_API_URL;
+      const response = await fetch(`${API_URL}/auth/login/`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Include cookies in the request
+      });
 
       if (!response.ok) {
         throw new Error("There was an error logging in");
@@ -49,7 +48,7 @@ const LoginForm = () => {
       }
 
       const data = await response.json();
-      console.log("Logged in successfully", data);
+
       setLoggedInMessage(data.message);
 
       //reset form data
@@ -64,38 +63,49 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  mt-4">
-      {loggedInMessage && <h2>{loggedInMessage}</h2>}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <input
-            className=" placeholder-black p-2  border-black border-2 mx-2 rounded-lg"
-            type="text"
-            placeholder="Username"
-            required
-            name="userName"
-            onChange={handleInputChange}
-            value={formData.userName}
-          />
-          <input
-            className=" placeholder-black p-2 border-black border-2 mx-2 rounded-lg"
-            type="password"
-            placeholder="Password"
-            required
-            name="password"
-            onChange={handleInputChange}
-            value={formData.password}
-          />
-        </div>
-        <div className="flex items-center justify-center ">
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-          >
-            Login
-          </button>
-        </div>
-      </form>
+    <div className=" flex items-center justify-center ">
+      <div className="w-full max-w-md bg-white shadow-md rounded-lg">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        {loggedInMessage && (
+          <h2 className="text-center text-green-500">{loggedInMessage}</h2>
+        )}
+        <form onSubmit={handleSubmit} className="p-6">
+          <div className="mb-4">
+            <input
+              className="w-full placeholder-black p-2 border-black border-2 rounded-lg mb-4"
+              type="text"
+              placeholder="Username"
+              required
+              name="userName"
+              onChange={handleInputChange}
+              value={formData.userName}
+            />
+            <input
+              className="w-full placeholder-black p-2 border-black border-2 rounded-lg"
+              type="password"
+              placeholder="Password"
+              required
+              name="password"
+              onChange={handleInputChange}
+              value={formData.password}
+            />
+          </div>
+          <div className="flex items-center justify-between gap-4 mt-4">
+            <button
+              type="submit"
+              className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Login
+            </button>
+            <Link
+              href="/register"
+              className="w-full py-2 text-center bg-green-600 text-white rounded-lg hover:bg-green-700"
+            >
+              Register
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

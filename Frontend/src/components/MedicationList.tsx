@@ -8,7 +8,11 @@ const MedicationList = ({ medicineData }: MedicationListProps) => {
   return (
     <div>
       {medicineData.map((medication: Medication) => (
-        <li key={medication._id}>{medication.name}</li>
+        <li key={medication._id} className="list-none">
+          {medication.name}
+          <span className="ml-2">{medication.strength}</span>
+          <span className="ml-2">{medication.dosageForm}</span>
+        </li>
       ))}
     </div>
   );
