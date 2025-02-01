@@ -8,37 +8,17 @@ import DeleteMedicine from "@/components/DeleteMedicine/DeleteMedicine";
 import AddMedication from "@/components/AddMedication";
 import LogoutButton from "@/components/LogoutButton";
 import { Medication } from "@/app/types/medicineType";
-import apiUrl from "@/utils/apirUrl";
+import { fetchMedication } from "@/utils/fetchMedication";
 
 const Page = () => {
   const [medicineData, setMedicineData] = useState<Medication[]>([]);
 
-  // Fetch medications
-  const fetchMedications = async () => {
-    try {
-      const response = await fetch(`${apiUrl}/medication`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // Include cookies in the request
-      });
-
-      if (!response.ok) {
-        const errorDetails = await response.text();
-        console.error("Error fetching medications:", errorDetails);
-        throw new Error("There was an error fetching medication data");
-      }
-
-      const data = await response.json();
-      setMedicineData(data);
-    } catch (error) {
-      console.error("Error fetching medications:", error);
-    }
+  const getMedicineData = async () => {
+    const data = await fetchMedication();
+    setMedicineData(data);
   };
-
   useEffect(() => {
-    fetchMedications();
+    getMedicineData();
   }, [medicineData]);
 
   return (
