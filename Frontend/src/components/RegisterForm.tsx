@@ -44,7 +44,9 @@ const RegisterForm: React.FC = () => {
         );
       }
     } catch (error) {
-      setResponseMessage("Error: Unable to register. Please try again later.");
+      setResponseMessage(
+        `Error: Unable to register. Please try again later. ${error}`
+      );
     }
   };
 

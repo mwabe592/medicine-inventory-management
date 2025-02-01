@@ -1,8 +1,8 @@
-// components/MedicineUpdateForm.tsx
 import React from "react";
+import { Medication } from "@/app/types/medicineType";
 
 type MedicineUpdateFormProps = {
-  formData: any;
+  formData: Medication;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

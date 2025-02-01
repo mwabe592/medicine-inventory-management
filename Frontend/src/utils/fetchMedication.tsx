@@ -12,6 +12,6 @@ export const fetchMedication = async () => {
     const data = await response.json();
     return data; // Return the list of medicines
   } catch (err) {
-    throw new Error("Failed to load medicines");
+    throw new Error(`Failed to load medicines ${err}`);
   }
 };

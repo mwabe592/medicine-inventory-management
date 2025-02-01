@@ -1,4 +1,3 @@
-// components/UpdateMedicine.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -17,10 +16,10 @@ const UpdateMedicine = () => {
     expiryDate: "",
     stock: 0,
     pharmaCode: 0,
+    _id: "",
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  console.log("formData:", formData);
 
   // Fetch the list of medicines from the backend
   useEffect(() => {
@@ -86,6 +85,7 @@ const UpdateMedicine = () => {
         expiryDate: "",
         stock: 0,
         pharmaCode: 0,
+        _id: "",
       });
     } catch (err: unknown) {
       setSuccessMessage("");

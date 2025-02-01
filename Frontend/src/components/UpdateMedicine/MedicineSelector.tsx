@@ -1,9 +1,8 @@
-// components/MedicineSelector.tsx
 import { Medication } from "@/app/types/medicineType";
 
 type MedicineSelectorProps = {
   medicines: Medication[];
-  onSelect: (medicine: any) => void;
+  onSelect: (medicine: Medication) => void;
 };
 
 const MedicineSelector = ({ medicines, onSelect }: MedicineSelectorProps) => {
