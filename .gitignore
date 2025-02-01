@@ -1,6 +1,9 @@
 #ignore environment variables file
 .env
 
+
+
+.env.local
 #ignore secret Key generation file 
 generateSecretKey.ts
 

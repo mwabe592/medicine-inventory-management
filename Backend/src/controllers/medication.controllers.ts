@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import * as MedicationService from "../services/medication.service";
-import { IMedication } from "../models/medication.model";
 
 // Handle GET request to fetch all medication
 export const getAllMedications = async (req: Request, res: Response) => {

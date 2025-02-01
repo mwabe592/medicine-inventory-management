@@ -1,5 +1,5 @@
-import Medication from "../models/medication.model";
 import { IMedication } from "../models/medication.model";
+import Medication from "../models/medication.model";
 
 //Service functions for handling the manipulation of data and database calls
 
