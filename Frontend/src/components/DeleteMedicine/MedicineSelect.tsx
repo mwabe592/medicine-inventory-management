@@ -1,6 +1,6 @@
 // components/MedicineSelect.tsx
 "use client";
-import { fetchMedication } from "@/utils/FetchMedication";
+import { fetchMedication } from "@/utils/fetchMedication";
 import { useEffect, useState } from "react";
 import { Medication } from "@/app/types/medicineType";
 

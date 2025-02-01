@@ -28,18 +28,15 @@ const AddMedication = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        // "https://medicine-inventory-management-api.vercel.app/medication",
-        "localhost:3000/api/medication", 
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-          credentials: "include", // Include cookies in the request
-        }
-      );
+      const API_URL = process.env.NEXT_PUBLIC_API_URL; // Replace with your actual API URL
+      const response = await fetch(`${API_URL}/medication`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include", // Include cookies in the request
+      });
 
       if (!response.ok) {
         const errorInfo = await response.json();
@@ -68,7 +65,6 @@ const AddMedication = () => {
 
   return (
     <div className="p-4 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Add Medication</h1>
       <form
         onSubmit={handleAddMedication}
         className="grid grid-cols-1 gap-4 sm:grid-cols-2"

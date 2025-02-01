@@ -11,7 +11,6 @@ const DeleteMedicine = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Delete Medicine</h1>
       <MedicineSelect onDeleteMedicine={handleDeleteMedicine} />
       {successMessage && <p className="text-green-500">{successMessage}</p>}
     </div>

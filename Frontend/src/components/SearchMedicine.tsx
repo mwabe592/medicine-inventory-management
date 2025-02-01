@@ -17,7 +17,7 @@ const SearchMedicine = () => {
       const API_URL = process.env.NEXT_PUBLIC_API_URL;
       const response = await fetch(
         `${API_URL}/medication?name=${medicineName}`,
-       
+
         {
           method: "GET",
           headers: {
@@ -75,6 +75,12 @@ const SearchMedicine = () => {
             </p>
             <p>
               <strong>Form:</strong> {medicine.dosageForm}
+            </p>
+            <p>
+              <strong>Quantity:</strong> {medicine.stock}
+            </p>
+            <p>
+              <strong>Expiry:</strong> {medicine.expiryDate}
             </p>
           </div>
         ))}
