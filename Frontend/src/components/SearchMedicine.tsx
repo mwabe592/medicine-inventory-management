@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MedicationResponse } from "@/app/types/medicineType";
+import apiUrl from "@/utils/apirUrl";
 
 const SearchMedicine = () => {
   const [medicineName, setMedicineName] = useState("");
@@ -14,9 +15,8 @@ const SearchMedicine = () => {
     e.preventDefault();
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL;
       const response = await fetch(
-        `${API_URL}/medication?name=${medicineName}`,
+        `${apiUrl}/medication?name=${medicineName}`,
 
         {
           method: "GET",

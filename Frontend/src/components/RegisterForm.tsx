@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import apiUrl from "@/utils/apirUrl";
 
 const RegisterForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -25,8 +26,7 @@ const RegisterForm: React.FC = () => {
     e.preventDefault();
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL;
-      const response = await fetch(`${API_URL}/auth/register`, {
+      const response = await fetch(`${apiUrl}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

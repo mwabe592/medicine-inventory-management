@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import apiUrl from "@/utils/apirUrl";
 
 type LoginFormData = {
   userName: string;
@@ -26,8 +27,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL;
-      const response = await fetch(`${API_URL}/auth/login/`, {
+      const response = await fetch(`${apiUrl}/auth/login/`, {
         method: "POST",
         body: JSON.stringify(formData),
         headers: {

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Medication } from "@/app/types/medicineType";
 import { fetchMedication } from "@/utils/fetchMedication";
+import apiUrl from "@/utils/apirUrl";
 
 const DeleteMedicine = () => {
   const [medicines, setMedicines] = useState<Medication[]>([]);
@@ -35,8 +36,7 @@ const DeleteMedicine = () => {
     const medicineID = selectedMedicine?._id;
     if (selectedMedicine) {
       try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL;
-        const response = await fetch(`${API_URL}/medication/delete`, {
+        const response = await fetch(`${apiUrl}/medication/delete`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

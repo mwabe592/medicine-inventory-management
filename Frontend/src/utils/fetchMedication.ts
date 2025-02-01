@@ -1,7 +1,8 @@
+import apiUrl from "./apirUrl";
+
 export const fetchMedication = async () => {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const response = await fetch(`${API_URL}/medication`, {
+    const response = await fetch(`${apiUrl}/medication`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

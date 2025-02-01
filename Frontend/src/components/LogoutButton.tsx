@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import apiUrl from "@/utils/apirUrl";
 import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
@@ -7,8 +8,7 @@ const LogoutButton = () => {
 
   const handleLogout = async () => {
     try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL;
-      const response = await fetch(`${API_URL}/auth/logout`, {
+      const response = await fetch(`${apiUrl}/auth/logout`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

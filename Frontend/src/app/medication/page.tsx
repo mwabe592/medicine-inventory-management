@@ -8,15 +8,15 @@ import DeleteMedicine from "@/components/DeleteMedicine/DeleteMedicine";
 import AddMedication from "@/components/AddMedication";
 import LogoutButton from "@/components/LogoutButton";
 import { Medication } from "@/app/types/medicineType";
+import apiUrl from "@/utils/apirUrl";
 
 const Page = () => {
   const [medicineData, setMedicineData] = useState<Medication[]>([]);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   // Fetch medications
   const fetchMedications = async () => {
     try {
-      const response = await fetch(`${API_URL}/medication`, {
+      const response = await fetch(`${apiUrl}/medication`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
